@@ -9,10 +9,18 @@ public class MagnitudeFilter implements Filter{
 
     private double min;
     private double max;
+    private String name;
 
     public MagnitudeFilter(double min, double max){
         this.max = max;
         this.min = min;
+        name = "MagnitudeFilter";
+    }
+
+    public MagnitudeFilter(double min, double max, String name){
+        this.max = max;
+        this.min = min;
+        this.name = name;
     }
 
     @Override
@@ -22,5 +30,10 @@ public class MagnitudeFilter implements Filter{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

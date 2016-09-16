@@ -11,9 +11,11 @@ import java.util.List;
 public class MatchAllFilter implements Filter{
 
     public List<Filter> filters;
+    private String name;
 
     public MatchAllFilter(){
         filters = new ArrayList<>();
+        name = "Filters used are: ";
     }
 
     public void addFilter(Filter filter){
@@ -29,5 +31,14 @@ public class MatchAllFilter implements Filter{
             }
         }
         return true;
+    }
+
+    @Override
+    public String getName() {
+        String out = name;
+        for(Filter filter : filters){
+            out += filter.getName() + " ";
+        }
+        return out;
     }
 }

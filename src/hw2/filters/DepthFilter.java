@@ -9,10 +9,18 @@ public class DepthFilter implements Filter{
 
     private double min;
     private double max;
+    private String name;
 
     public DepthFilter(double min, double max){
         this.max = max;
         this.min = min;
+        name = "DepthFilter";
+    }
+
+    public DepthFilter(double min, double max, String name){
+        this.max = max;
+        this.min = min;
+        this.name = name;
     }
 
     @Override
@@ -22,5 +30,10 @@ public class DepthFilter implements Filter{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

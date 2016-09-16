@@ -11,4 +11,6 @@ import hw1.doa.QuakeEntry;
 public interface Filter
 {
     public  boolean satisfies(QuakeEntry qe);
+
+    public String getName();
 }

@@ -9,8 +9,16 @@ public class PhraseFilter implements Filter{
 
     private String type;
     private String phrase;
+    private String name;
 
     public PhraseFilter(String type, String phrase){
+        name = "PhraseFilter";
+        this.type = type;
+        this.phrase = phrase;
+    }
+
+    public PhraseFilter(String type, String phrase, String name){
+        this.name = name;
         this.type = type;
         this.phrase = phrase;
     }
@@ -28,5 +36,10 @@ public class PhraseFilter implements Filter{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

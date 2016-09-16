@@ -9,19 +9,33 @@ import hw1.doa.QuakeEntry;
 public class DistanceFilter implements Filter{
 
     private Location location;
-    private float maxDistance;
+    private double maxDistance;
+    private String name;
 
-    public DistanceFilter(Location location, float maxDistance){
+    public DistanceFilter(Location location, double maxDistance){
         this.location = location;
         this.maxDistance = maxDistance;
+        name = "DistanceFilter";
+    }
+
+    public DistanceFilter(Location location, double maxDistance, String name){
+        this.location = location;
+        this.maxDistance = maxDistance;
+        this.name = name;
     }
 
     @Override
     public boolean satisfies(QuakeEntry qe) {
-        float distance = qe.getLocation().distanceTo(location);
-        if(distance < maxDistance){
+        double distance = qe.getLocation().distanceTo(location);
+        //System.out.println(distance);
+        if(distance < maxDistance*1000){
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }
