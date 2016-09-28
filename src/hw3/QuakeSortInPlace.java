@@ -11,6 +11,34 @@ public class QuakeSortInPlace {
     public QuakeSortInPlace() {
     }
 
+    public void sortByMagnitudeWithCheck(List<QuakeEntry> in){
+        int passes = 0;
+        if(!checkInSortedOrder(in)){
+            for(int a = 0; a < in.size(); a++){
+                int max = getLargestMagnitude(in, a);
+                //System.out.println(max);
+                QuakeEntry maxQE = in.get(max);
+                QuakeEntry replace = in.get(a);
+                in.set(max, replace);
+                in.set(a,maxQE);
+                passes++;
+                if(checkInSortedOrder(in)){
+                    break;
+                }
+            }
+        }
+        System.out.println("Passes " + passes);
+    }
+
+    public int getLargestMagnitude(List<QuakeEntry> quakeData, int from){
+        for(int a = from+1; a < quakeData.size(); a++){
+            if(quakeData.get(from).getMagnitude() > quakeData.get(a).getMagnitude()){
+                from = a;
+            }
+        }
+        return from;
+    }
+
     public void sortByMagnitudeWithBubbleSortWithCheck(List<QuakeEntry> in){
         int passes = 0;
         int max = in.size()-1;
@@ -142,7 +170,8 @@ public class QuakeSortInPlace {
         //sortByMagnitude(list);
         //sortByLargestDepth(list);
         //sortByMagnitudeWithBubbleSort(list);
-        sortByMagnitudeWithBubbleSortWithCheck(list);
+        //sortByMagnitudeWithBubbleSortWithCheck(list);
+        sortByMagnitudeWithCheck(list);
         for (QuakeEntry qe: list) {
             System.out.println(qe);
         } 
