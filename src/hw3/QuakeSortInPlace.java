@@ -17,7 +17,7 @@ public class QuakeSortInPlace {
         if(!checkInSortedOrder(in)){
             //System.out.println();
             while(passes < max){
-                onePassBubbleSort(in, passes);
+                onePassBubbleSortChecked(in, passes);
                 passes++;
                 if(checkInSortedOrder(in)){
                     //System.out.println("BREAKING");
@@ -35,22 +35,36 @@ public class QuakeSortInPlace {
             System.out.println(qe);
         }
         */
+        //System.out.println("STEPS");
         for(int a = 0; a < quakes.size()-1; a++){
-            if(quakes.get(a).getMagnitude() < quakes.get(a+1).getMagnitude()){
+            //System.out.println(quakes.get(a));
+            if(quakes.get(a).getMagnitude() > quakes.get(a+1).getMagnitude()){
                 return false;
             }
         }
         return true;
     }
 
-    public void onePassBubbleSort(List<QuakeEntry> quakeData, int numSorted){
-        int max = quakeData.size()-1;
-        for(int a = max; a > numSorted; a--){
-            QuakeEntry next = quakeData.get(a-1);
+    public void onePassBubbleSortChecked(List<QuakeEntry> quakeData, int numSorted){
+        int max = quakeData.size()-1-numSorted;
+        for(int a = 0; a < max; a++){
+            QuakeEntry next = quakeData.get(a+1);
             QuakeEntry curr = quakeData.get(a);
             if(curr.getMagnitude() > next.getMagnitude()){
                 quakeData.set(a, next);
-                quakeData.set(a-1,curr);
+                quakeData.set(a+1,curr);
+            }
+        }
+    }
+
+    public void onePassBubbleSort(List<QuakeEntry> quakeData, int numSorted){
+        int max = quakeData.size()-1-numSorted;
+        for(int a = 0; a < max; a++){
+            QuakeEntry next = quakeData.get(a+1);
+            QuakeEntry curr = quakeData.get(a);
+            if(curr.getMagnitude() < next.getMagnitude()){
+                quakeData.set(a, next);
+                quakeData.set(a+1,curr);
             }
         }
     }
@@ -120,8 +134,8 @@ public class QuakeSortInPlace {
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
         //String source = "src/hw3/data/nov20quakedatasmall.atom";
         //String source = "src/hw3/data/nov20quakedata.atom";
-        String source = "src/hw3/data/earthquakeDataSampleSix2.atom";
-        //String source = "src/hw3/data/earthquakeDataSampleSix1.atom";
+        //String source = "src/hw3/data/earthquakeDataSampleSix2.atom";
+        String source = "src/hw3/data/earthquakeDataSampleSix1.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);  
        
         System.out.println("read data for "+list.size()+" quakes");    
