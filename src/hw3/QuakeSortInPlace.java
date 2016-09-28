@@ -11,7 +11,37 @@ public class QuakeSortInPlace {
     public QuakeSortInPlace() {
     }
 
+    public void sortByMagnitudeWithBubbleSortWithCheck(List<QuakeEntry> in){
+        int passes = 0;
+        int max = in.size()-1;
+        if(!checkInSortedOrder(in)){
+            //System.out.println();
+            while(passes < max){
+                onePassBubbleSort(in, passes);
+                passes++;
+                if(checkInSortedOrder(in)){
+                    //System.out.println("BREAKING");
+                    break;
+                }
+            }
+        }
+        System.out.println("Passes " + passes);
+    }
 
+    public boolean checkInSortedOrder(List<QuakeEntry> quakes){
+        /*
+        System.out.println("\nChecking");
+        for(QuakeEntry qe : quakes){
+            System.out.println(qe);
+        }
+        */
+        for(int a = 0; a < quakes.size()-1; a++){
+            if(quakes.get(a).getMagnitude() < quakes.get(a+1).getMagnitude()){
+                return false;
+            }
+        }
+        return true;
+    }
 
     public void onePassBubbleSort(List<QuakeEntry> quakeData, int numSorted){
         int max = quakeData.size()-1;
@@ -27,7 +57,7 @@ public class QuakeSortInPlace {
 
     public void sortByMagnitudeWithBubbleSort(List<QuakeEntry> in){
         int passes = 0;
-        int max = in.size();
+        int max = in.size()-1;
         while(passes < max){
             /*
             for(QuakeEntry qe : in){
@@ -91,12 +121,14 @@ public class QuakeSortInPlace {
         //String source = "src/hw3/data/nov20quakedatasmall.atom";
         //String source = "src/hw3/data/nov20quakedata.atom";
         String source = "src/hw3/data/earthquakeDataSampleSix2.atom";
+        //String source = "src/hw3/data/earthquakeDataSampleSix1.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);  
        
         System.out.println("read data for "+list.size()+" quakes");    
         //sortByMagnitude(list);
         //sortByLargestDepth(list);
-        sortByMagnitudeWithBubbleSort(list);
+        //sortByMagnitudeWithBubbleSort(list);
+        sortByMagnitudeWithBubbleSortWithCheck(list);
         for (QuakeEntry qe: list) {
             System.out.println(qe);
         } 
