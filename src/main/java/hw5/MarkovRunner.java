@@ -35,5 +35,12 @@ public class MarkovRunner {
 		}
 		System.out.println("\n----------------------------------");
 	}
+
+	public static void main(String[] args){
+		MarkovRunner m = new MarkovRunner();
+        m.runMarkovZero();
+        System.out.println();
+        m.runMarkovZero();
+	}
 	
 }
