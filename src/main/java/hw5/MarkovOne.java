@@ -17,35 +17,14 @@ public class MarkovOne {
         myRandom = new Random();
     }
 
-    public List<Character> getFollows(String key){
-        List<Character> list = new ArrayList<>();
+    public List<String> getFollows(String key){
+        ArrayList<String> list = new ArrayList<String>();
 
-        String regex = "[a-zA-Z]+[.?!]*";
-        String temp = myText;
-
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(temp);
-
-        while(matcher.find()){
-            StringBuffer text = new StringBuffer(matcher.group());
-            int index = text.indexOf(key);
-            //System.out.println(text);
-            while(index != -1){
-                //System.out.println(index + " " + text);
-
-                char character = ' ';
-                if(index + key.length() < text.length()){
-                    character = text.charAt(index+key.length());
-                }
-                list.add(character);
-                text.deleteCharAt(index);
-                index = text.indexOf(key);
+        for (int i = 0; i < myText.length() - 1; i++) {
+            if (key.equals(myText.substring(i, i + 1))){
+                list.add(myText.substring(i + 1, i + 2));
             }
         }
-
-        //list.stream().forEach(c -> System.out.println(c));
-
-        //System.out.println();
 
         return list;
     }
@@ -63,11 +42,20 @@ public class MarkovOne {
             return "";
         }
         StringBuilder sb = new StringBuilder();
-        for(int k=0; k < numChars; k++){
-            int index = myRandom.nextInt(myText.length());
-            String key = myText.substring(k, k+numChars);
-            List<Character> characters = getFollows(key);
-            sb.append(characters.get(index));
+
+        int index = myRandom.nextInt(myText.length()-1);
+        //int index = 0;
+        String key = myText.substring(index, index+1);
+        sb.append(key);
+
+        for(int k=0; k < numChars-1; k++){
+            List<String> list = getFollows(key);
+            if(list.size() == 0){
+                break;
+            }
+            index = myRandom.nextInt(list.size());
+            key = "" + list.get(index);
+            sb.append(key);
         }
 
         return sb.toString();

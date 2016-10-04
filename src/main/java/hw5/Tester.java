@@ -27,13 +27,14 @@ public class Tester {
         //printList(one.getFollows("es"));
     }
 
-    void printList(List<Character> list){
+    void printList(List<String> list){
         list.stream().forEach(c -> System.out.println(c));
         System.out.println(list.size());
     }
 
     public static void main(String[] args){
         Tester test = new Tester();
-        test.testGetFollowsWithFile();
+        //test.testGetFollowsWithFile();
+        test.testGetFollows();
     }
 }

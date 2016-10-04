@@ -53,8 +53,8 @@ public class MarkovRunner {
 
 	public static void main(String[] args){
 		MarkovRunner m = new MarkovRunner();
-        m.runMarkovZero();
-        System.out.println();
+        //m.runMarkovZero();
+        //System.out.println();
         m.runMarkovOne();
 	}
 	
