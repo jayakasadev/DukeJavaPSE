@@ -1,4 +1,4 @@
-package hw5.part2;
+package hw5.RandomText.Abstraction;
 
 /**
  * Created by kasa2 on 10/4/2016.

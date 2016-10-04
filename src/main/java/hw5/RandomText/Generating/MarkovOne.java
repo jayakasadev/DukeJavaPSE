@@ -1,24 +1,40 @@
-package hw5.part2;
+package hw5.RandomText.Generating;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
  * Created by kasa2 on 9/28/2016.
  */
-public class MarkovOne extends AbstractMarkovModel{
+public class MarkovOne {
+    private String myText;
+    private Random myRandom;
 
     public MarkovOne() {
-        super();
-        order = 1;
+        myRandom = new Random();
     }
 
-    @Override
+    public List<String> getFollows(String key){
+        ArrayList<String> list = new ArrayList<String>();
+
+        for (int i = 0; i < myText.length() - 1; i++) {
+            if (key.equals(myText.substring(i, i + 1))){
+                list.add(myText.substring(i + 1, i + 2));
+            }
+        }
+
+        return list;
+    }
+
+    public void setRandom(int seed){
+        myRandom = new Random(seed);
+    }
+
     public void setTraining(String s){
         myText = s.trim();
     }
 
-    @Override
     public String getRandomText(int numChars){
         if (myText == null){
             return "";
@@ -41,10 +57,5 @@ public class MarkovOne extends AbstractMarkovModel{
         }
 
         return sb.toString();
-    }
-
-    @Override
-    public void setRandom(int seed){
-        myRandom = new Random(seed);
     }
 }

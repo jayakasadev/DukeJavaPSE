@@ -1,7 +1,6 @@
-package hw5.part1;
+package hw5.RandomText.Generating;
 
 import edu.duke.FileResource;
-import hw5.part1.MarkovOne;
 
 import java.util.List;
 

@@ -1,26 +1,27 @@
-package hw5.part1;
+package hw5.RandomText.Generating;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
- * Created by kasa2 on 9/28/2016.
+ * Created by kasa2 on 10/4/2016.
  */
-public class MarkovOne {
+public class MarkovFour {
+
     private String myText;
     private Random myRandom;
 
-    public MarkovOne() {
+    public MarkovFour() {
         myRandom = new Random();
     }
 
     public List<String> getFollows(String key){
         ArrayList<String> list = new ArrayList<String>();
 
-        for (int i = 0; i < myText.length() - 1; i++) {
-            if (key.equals(myText.substring(i, i + 1))){
-                list.add(myText.substring(i + 1, i + 2));
+        for (int i = 0; i < myText.length() - 4; i++) {
+            if (key.equals(myText.substring(i, i + 4))){
+                list.add(myText.substring(i + 4, i + 5));
             }
         }
 
@@ -41,21 +42,23 @@ public class MarkovOne {
         }
         StringBuilder sb = new StringBuilder();
 
-        int index = myRandom.nextInt(myText.length()-1);
+        int index = myRandom.nextInt(myText.length()-4);
         //int index = 0;
-        String key = myText.substring(index, index+1);
+        String key = myText.substring(index, index+4);
         sb.append(key);
 
-        for(int k=0; k < numChars-1; k++){
+        for(int k=0; k < numChars-4; k++){
             List<String> list = getFollows(key);
             if(list.size() == 0){
                 break;
             }
             index = myRandom.nextInt(list.size());
-            key = "" + list.get(index);
-            sb.append(key);
+            String temp = "" + list.get(index);
+            sb.append(temp);
+            key = key.substring(1) + temp;
         }
 
         return sb.toString();
     }
+
 }

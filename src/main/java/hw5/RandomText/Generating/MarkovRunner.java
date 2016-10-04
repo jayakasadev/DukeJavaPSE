@@ -1,4 +1,4 @@
-package hw5.part1;
+package hw5.RandomText.Generating;
 /**
  * Write a description of class MarkovRunner here.
  * 
@@ -7,10 +7,10 @@ package hw5.part1;
  */
 
 import edu.duke.*;
-import hw5.part2.MarkovFour;
-import hw5.part2.MarkovModel;
-import hw5.part2.MarkovOne;
-import hw5.part2.MarkovZero;
+import hw5.RandomText.Abstraction.MarkovFour;
+import hw5.RandomText.Abstraction.MarkovModel;
+import hw5.RandomText.Abstraction.MarkovOne;
+import hw5.RandomText.Abstraction.MarkovZero;
 
 public class MarkovRunner {
     public void runMarkovZero() {

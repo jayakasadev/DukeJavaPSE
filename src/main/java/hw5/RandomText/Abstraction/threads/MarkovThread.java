@@ -1,9 +1,7 @@
-package hw5.part2.threads;
+package hw5.RandomText.Abstraction.threads;
 
-import hw5.part1.MarkovRunner;
-import hw5.part2.IMarkovModel;
-import hw5.part2.MarkovModel;
-import hw5.part2.MarkovRunnerWithInterface;
+import hw5.RandomText.Abstraction.IMarkovModel;
+import hw5.RandomText.Abstraction.MarkovRunnerWithInterface;
 
 /**
  * Created by kasa2 on 10/4/2016.

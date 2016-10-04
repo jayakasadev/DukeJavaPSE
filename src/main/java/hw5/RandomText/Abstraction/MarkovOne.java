@@ -1,16 +1,16 @@
-package hw5.part2;
+package hw5.RandomText.Abstraction;
 
 import java.util.List;
 import java.util.Random;
 
 /**
- * Created by kasa2 on 10/4/2016.
+ * Created by kasa2 on 9/28/2016.
  */
-public class MarkovFour extends AbstractMarkovModel{
+public class MarkovOne extends AbstractMarkovModel{
 
-    public MarkovFour() {
+    public MarkovOne() {
         super();
-        order = 4;
+        order = 1;
     }
 
     @Override
@@ -25,20 +25,19 @@ public class MarkovFour extends AbstractMarkovModel{
         }
         StringBuilder sb = new StringBuilder();
 
-        int index = myRandom.nextInt(myText.length()-4);
+        int index = myRandom.nextInt(myText.length()-1);
         //int index = 0;
-        String key = myText.substring(index, index+4);
+        String key = myText.substring(index, index+1);
         sb.append(key);
 
-        for(int k=0; k < numChars-4; k++){
+        for(int k=0; k < numChars-1; k++){
             List<String> list = getFollows(key);
             if(list.size() == 0){
                 break;
             }
             index = myRandom.nextInt(list.size());
-            String temp = "" + list.get(index);
-            sb.append(temp);
-            key = key.substring(1) + temp;
+            key = "" + list.get(index);
+            sb.append(key);
         }
 
         return sb.toString();
@@ -48,5 +47,4 @@ public class MarkovFour extends AbstractMarkovModel{
     public void setRandom(int seed){
         myRandom = new Random(seed);
     }
-
 }

@@ -1,43 +1,24 @@
-package hw5.part1;
+package hw5.RandomText.Abstraction;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
  * Created by kasa2 on 10/4/2016.
  */
-public class MarkovModel {
-
-    private String myText;
-    private Random myRandom;
-    private int order;
+public class MarkovModel extends AbstractMarkovModel{
 
     public MarkovModel(int order) {
-        myRandom = new Random();
+        super();
         this.order = order;
     }
 
-    public List<String> getFollows(String key){
-        ArrayList<String> list = new ArrayList<String>();
-
-        for (int i = 0; i < myText.length() - order; i++) {
-            if (key.equals(myText.substring(i, i + order))){
-                list.add(myText.substring(i + order, i + order + 1));
-            }
-        }
-
-        return list;
-    }
-
-    public void setRandom(int seed){
-        myRandom = new Random(seed);
-    }
-
+    @Override
     public void setTraining(String s){
         myText = s.trim();
     }
 
+    @Override
     public String getRandomText(int numChars){
         if (myText == null){
             return "";
@@ -61,5 +42,15 @@ public class MarkovModel {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public void setRandom(int seed){
+        myRandom = new Random(seed);
+    }
+
+    @Override
+    public String toString() {
+        return "MarkovModel Order " + order;
     }
 }

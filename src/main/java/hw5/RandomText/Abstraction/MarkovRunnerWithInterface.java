@@ -1,7 +1,7 @@
-package hw5.part2;
+package hw5.RandomText.Abstraction;
 
 import edu.duke.FileResource;
-import hw5.part2.threads.MarkovThread;
+import hw5.RandomText.Abstraction.threads.MarkovThread;
 
 /**
  * Created by kasa2 on 10/4/2016.

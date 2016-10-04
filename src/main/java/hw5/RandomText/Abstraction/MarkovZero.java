@@ -1,4 +1,4 @@
-package hw5.part2;
+package hw5.RandomText.Abstraction;
 /**
  * Write a description of class MarkovZero here.
  * 
