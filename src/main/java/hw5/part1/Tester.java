@@ -1,6 +1,7 @@
-package hw5;
+package hw5.part1;
 
 import edu.duke.FileResource;
+import hw5.part1.MarkovOne;
 
 import java.util.List;
 

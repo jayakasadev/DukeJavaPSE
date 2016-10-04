@@ -1,4 +1,4 @@
-package hw5;
+package hw5.part2;
 /**
  * Write a description of class MarkovZero here.
  * 
@@ -8,22 +8,19 @@ package hw5;
 
 import java.util.Random;
 
-public class MarkovZero {
-    private String myText;
-	private Random myRandom;
-	
+public class MarkovZero extends AbstractMarkovModel{
+
 	public MarkovZero() {
-		myRandom = new Random();
+		super();
+        order = 0;
 	}
-	
-	public void setRandom(int seed){
-		myRandom = new Random(seed);
-	}
-	
+
+	@Override
 	public void setTraining(String s){
 		myText = s.trim();
 	}
-	
+
+	@Override
 	public String getRandomText(int numChars){
 		if (myText == null){
 			return "";
@@ -36,4 +33,9 @@ public class MarkovZero {
 		
 		return sb.toString();
 	}
+
+    @Override
+    public void setRandom(int seed){
+        myRandom = new Random(seed);
+    }
 }

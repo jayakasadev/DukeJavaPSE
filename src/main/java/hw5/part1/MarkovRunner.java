@@ -1,4 +1,4 @@
-package hw5;
+package hw5.part1;
 /**
  * Write a description of class MarkovRunner here.
  * 
@@ -7,6 +7,10 @@ package hw5;
  */
 
 import edu.duke.*;
+import hw5.part2.MarkovFour;
+import hw5.part2.MarkovModel;
+import hw5.part2.MarkovOne;
+import hw5.part2.MarkovZero;
 
 public class MarkovRunner {
     public void runMarkovZero() {
