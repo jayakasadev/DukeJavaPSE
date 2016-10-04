@@ -28,6 +28,7 @@ public class MarkovRunner {
         st = st.replace('\n', ' ');
         MarkovOne markov = new MarkovOne();
         //markov.setRandom(101);
+		markov.setRandom(42);
         markov.setTraining(st);
         for(int k=0; k < 3; k++){
             String text = markov.getRandomText(500);
@@ -54,7 +55,7 @@ public class MarkovRunner {
 		MarkovRunner m = new MarkovRunner();
         m.runMarkovZero();
         System.out.println();
-        m.runMarkovZero();
+        m.runMarkovOne();
 	}
 	
 }
