@@ -17,30 +17,65 @@ public class WordGram {
     }
 
     public int length(){
-        // TODO: Complete this method
-        return 0;
+        return myWords.length;
     }
 
     public String toString(){
         String ret = "";
-        // TODO: Complete this method
+
+        for(String s : myWords){
+            ret += s + " ";
+        }
 
         return ret.trim();
     }
 
     public boolean equals(Object o) {
         WordGram other = (WordGram) o;
-        // TODO: Complete this method
+
+        if(other  == null){
+            return false;
+        }
+        if(!other.toString().equals(toString())){
+            return false;
+        }
         return true;
 
     }
 
+    private String[] getMyWords(){
+        return myWords;
+    }
+
     public WordGram shiftAdd(String word) {	
-        WordGram out = new WordGram(myWords, 0, myWords.length);
+        //WordGram out = new WordGram(myWords, 0, myWords.length);
         // shift all words one towards 0 and add word at the end. 
         // you lose the first word
         // TODO: Complete this method
+
+        String[] arr = new String[myWords.length];
+
+        int index = 0;
+
+        while(index < myWords.length-1){
+            //System.out.println(this);
+            arr[index] = myWords[index+1];
+            index++;
+        }
+        arr[index] = word;
+        //System.out.println(this);
+
+        WordGram out = new WordGram(arr, 0, arr.length);
+
         return out;
+    }
+
+    public static void main(String[] args){
+        String[] source = "this is a test".split(" ");
+        WordGram w = new WordGram(source, 0, source.length);
+        System.out.println(w);
+        w = w.shiftAdd("yes");
+        System.out.println(w);
     }
 
 }

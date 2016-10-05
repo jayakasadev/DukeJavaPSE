@@ -31,5 +31,12 @@ public class WordGramTester {
 			}
 		}
 	}
+
+	public static void main(String[] args){
+		WordGramTester t = new WordGramTester();
+		t.testWordGram();
+
+		t.testWordGramEquals();
+	}
 	
 }
