@@ -29,12 +29,25 @@ public class MarkovRunner {
     } 
 
     public void runMarkov() { 
-        FileResource fr = new FileResource(); 
-        String st = fr.asString(); 
-        st = st.replace('\n', ' '); 
+        FileResource fr = new FileResource();
+        String st = fr.asString();
+        st = st.replace('\n', ' ');
         MarkovWordOne markovWord = new MarkovWordOne(); 
-        runModel(markovWord, st, 200); 
-    } 
+        //runModel(markovWord, st, 200);
+        runModel(markovWord, st, 120, 175);
+
+        //String text = "this is just a test yes this is a simple test";
+        //runModel(markovWord, text, 20, 175);
+    }
+
+    public void runMarkovTwo(){
+        FileResource fr = new FileResource();
+        String st = fr.asString();
+        st = st.replace('\n', ' ');
+        MarkovWordTwo markovWord = new MarkovWordTwo();
+        //runModel(markovWord, st, 200);
+        runModel(markovWord, st, 20, 549);
+    }
 
     private void printOut(String s){
         String[] words = s.split("\\s+");
@@ -49,6 +62,14 @@ public class MarkovRunner {
             } 
         } 
         System.out.println("\n----------------------------------");
-    } 
+    }
+
+    public static void main(String[] args){
+        MarkovRunner m = new MarkovRunner();
+        String text = "this is just a test yes this is a simple test";
+        //m.runModel(new MarkovWordOne(), text, 120, 175);
+        //m.runMarkov();
+        m.runMarkovTwo();
+    }
 
 }

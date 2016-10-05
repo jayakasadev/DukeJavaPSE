@@ -32,7 +32,10 @@ public class MarkovWordOne implements IMarkovModel {
 		sb.append(" ");
 		for(int k=0; k < numWords-1; k++){
 		    ArrayList<String> follows = getFollows(key);
-		    if (follows.size() == 0) {
+
+            //System.out.println(follows);
+
+            if (follows.size() == 0) {
 		        break;
 		    }
 			index = myRandom.nextInt(follows.size());
@@ -46,8 +49,55 @@ public class MarkovWordOne implements IMarkovModel {
 	}
 	
 	private ArrayList<String> getFollows(String key) {
-	    ArrayList<String> follows = new ArrayList<String>();
-	    return follows;
+        int index = 0;
+        //System.out.println("getFollows " + key);
+        int count = 0;
+        ArrayList<String> follows = new ArrayList<>();
+        while(index < myText.length){
+            //System.out.println(index);
+            index = indexOf(myText, key, index);
+            if(index == -1){
+                break;
+            }
+            if(++index < myText.length)
+                follows.add(myText[index]);
+        }
+
+        return follows;
     }
 
+	private int indexOf(String[] words, String target, int start){
+		while(start < words.length){
+            if(words[start].equals(target)){
+                return start;
+            }
+            start++;
+        }
+        return -1;
+	}
+
+	public void testIndexOf(){
+        String[] words = "this is just a test yes this is a simple test".split(" ");
+        String target = "this";
+        int start = 0;
+        System.out.println("Starting at " + start  + " target: " + target + " Result:" + indexOf(words, target, start));
+        start = 3;
+        System.out.println("Starting at " + start  + " target: " + target + " Result:" + indexOf(words, target, start));
+        start = 0;
+        target = "frog";
+        System.out.println("Starting at " + start  + " target: " + target + " Result:" + indexOf(words, target, start));
+        start = 5;
+        System.out.println("Starting at " + start  + " target: " + target + " Result:" + indexOf(words, target, start));
+        start = 2;
+        target = "simple";
+        System.out.println("Starting at " + start  + " target: " + target + " Result:" + indexOf(words, target, start));
+        start = 5;
+        target = "test";
+        System.out.println("Starting at " + start  + " target: " + target + " Result:" + indexOf(words, target, start));
+    }
+
+    public static void main(String[] args){
+        MarkovWordOne m = new MarkovWordOne();
+        m.testIndexOf();
+    }
 }
