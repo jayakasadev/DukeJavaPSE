@@ -78,4 +78,8 @@ public class WordGram {
         System.out.println(w);
     }
 
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
 }

@@ -1,8 +1,8 @@
 package hw5.WordNGrams.part2;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import edu.duke.FileResource;
+
+import java.util.*;
 
 /**
  * Created by kasa2 on 10/5/2016.
@@ -11,15 +11,20 @@ public class EfficientMarkovWord implements  IMarkovModel{
     private String[] myText;
     private Random myRandom;
     private int myOrder;
+    private Map<WordGram, List<String>> map;
 
     public EfficientMarkovWord(int order){
         myOrder = order;
         myRandom = new Random();
+        map = new HashMap<>();
     }
 
     @Override
     public void setTraining(String text) {
         myText = text.split("\\s+");
+        //System.out.println("Building the Map");
+        buildMap();
+        //printHashMapInfo();
     }
 
     @Override
@@ -29,36 +34,24 @@ public class EfficientMarkovWord implements  IMarkovModel{
 
     @Override
     public String getRandomText(int numWords){
-        //System.out.println("getRandomText " + numWords);
         StringBuilder sb = new StringBuilder();
-        int index = myRandom.nextInt(myText.length-myOrder);  // random word to start with
-        String[] key = new String[myOrder];
-        System.arraycopy(myText, index, key, 0, myOrder);
-        WordGram w = new WordGram(key, 0, myOrder);
+
+        List<WordGram> keys = new ArrayList<>(map.keySet());
+        int index = myRandom.nextInt(map.size());  // random word to start with
+
+        WordGram w = keys.get(index);
         sb.append(w);
         sb.append(" ");
-        //int count = 0;
         for(int k=0; k < numWords-myOrder; k++){
-            //System.out.println(w);
             List<String> follows = getFollows(w);
-            //System.out.println(follows);
-
             if (follows.size() == 0) {
                 break;
             }
-
             index = myRandom.nextInt(follows.size());
             String next = follows.get(index);
             sb.append(next);
             sb.append(" ");
             w = w.shiftAdd(next);
-
-            /*
-            count++;
-            if(count == 4){
-                break;
-            }
-            */
         }
 
         return sb.toString().trim();
@@ -80,30 +73,65 @@ public class EfficientMarkovWord implements  IMarkovModel{
     }
 
     private List<String> getFollows(WordGram kGram) {
-        //System.out.println("getFollows " + kGram);
-        List<String> follows = new ArrayList<>();
+        return map.get(kGram);
+    }
 
-        //String[] string = "* * *".split(" ");
-        //kGram = new WordGram(string, 0, myOrder);
+    private void buildMap(){
+        //System.out.println("buildMap");
 
-        int index = indexOf(myText, kGram, 0);
-        //int count = 0;
-        while(index != -1){
+        int index = 0;  // random word to start with
+        String[] key = new String[myOrder];
+        System.arraycopy(myText, index, key, 0, myOrder);
+        WordGram w = new WordGram(key, 0, myOrder);
+
+        while(index < myText.length-myOrder){
+            //System.out.println(w + " index " + index + " myText.length-myOrder " + (myText.length-myOrder));
             String text = myText[index+myOrder];
-            follows.add(text);
-            //System.out.println("BACK IN GETFOLLOWS " + follows);
-            //kGram = kGram.shiftAdd(text);
-            //System.out.println(kGram);
-            index = indexOf(myText, kGram, index+myOrder);
+            List<String> list = map.get(w);
 
-            /*
-            count++;
-            if(count == 4){
-                break;
+            if(list == null){
+                list = new ArrayList<>();
+                map.put(w, list);
             }
-            */
+
+            list.add(text);
+
+            w = w.shiftAdd(text);
+            index++;
+            //System.out.println("\t" + w + " index " + index + " myText.length-myOrder " + (myText.length-myOrder));
+        }
+        map.put(w, new ArrayList<>());
+    }
+
+    public void printHashMapInfo(){
+        System.out.println("\nprintHashMapInfo");
+        //System.out.println("Theoretical " + (myText.length()-3));
+        //System.out.println("Hashmap has " + map.size() + " keys.");
+
+        Set<WordGram> keys = map.keySet();
+        System.out.println("Hashmap has " + keys.size() + " keys.");
+        int largest = 0;
+
+        for(WordGram key : keys){
+            int size = map.get(key).size();
+            if(size > largest){
+                largest = size;
+            }
         }
 
-        return follows;
+        for(WordGram key : keys){
+            //System.out.println(key);
+            int size = map.get(key).size();
+            if(size == largest){
+                System.out.println(key + " HAS SIZE " + largest);
+            }
+        }
+
+        System.out.println("printHashMapInfo\n");
+    }
+
+    @Override
+    public String toString() {
+        return "EfficientMarkovWord " + myOrder;
     }
 }

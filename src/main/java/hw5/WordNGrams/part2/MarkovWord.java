@@ -107,4 +107,9 @@ public class MarkovWord implements IMarkovModel{
 
         return follows;
     }
+
+    @Override
+    public String toString() {
+        return "MarkovWord " + myOrder;
+    }
 }
