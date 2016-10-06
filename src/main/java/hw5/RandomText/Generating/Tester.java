@@ -9,7 +9,8 @@ import java.util.List;
  */
 public class Tester {
 
-    String set = "this is a test yes this is a test.";
+    //String set = "this is a test yes this is a test.";
+    String set;
 
     public void testGetFollowsWithFile(){
         FileResource fr = new FileResource();
@@ -22,7 +23,9 @@ public class Tester {
     public void testGetFollows(){
         MarkovOne one = new MarkovOne();
         one.setTraining(set);
-        printList(one.getFollows("t"));
+        printList(one.getFollows("he"));
+        //printList(one.getFollows("o"));
+        //printList(one.getFollows("t"));
         //printList(one.getFollows("e"));
         //printList(one.getFollows("es"));
     }
@@ -34,7 +37,7 @@ public class Tester {
 
     public static void main(String[] args){
         Tester test = new Tester();
-        //test.testGetFollowsWithFile();
-        test.testGetFollows();
+        test.testGetFollowsWithFile();
+        //test.testGetFollows();
     }
 }

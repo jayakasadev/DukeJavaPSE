@@ -77,6 +77,7 @@ public class MarkovRunnerWithInterface {
         st = st.replace('\n', ' ');
 
 
+        /*
         System.out.println("\t\tZERO");
         IMarkovModel model = new MarkovZero();
         runModel(model, st, 500, 101);
@@ -89,6 +90,14 @@ public class MarkovRunnerWithInterface {
         System.out.println("\t\tFOUR");
         model = new MarkovFour();
         runModel(model, st, 500, 25);
+        */
+
+
+        //IMarkovModel model = new EfficientMarkovModel(6);
+        //runModel(model, st, 500, 792);
+
+        IMarkovModel model = new EfficientMarkovModel(5);
+        runModel(model, st, 100, 531);
     }
 
     public void testHashMap(){
@@ -146,8 +155,8 @@ public class MarkovRunnerWithInterface {
 
     public static void main(String[] args){
         MarkovRunnerWithInterface m = new MarkovRunnerWithInterface();
-        //m.runMarkov();
+        m.runMarkov();
         //m.testHashMap();
-        m.compareMethods();
+        //m.compareMethods();
     }
 }

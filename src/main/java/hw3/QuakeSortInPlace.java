@@ -134,7 +134,7 @@ public class QuakeSortInPlace {
             quakeData.set(i,qmin);
             quakeData.set(max,qi);
             passes++;
-            if(passes == 50){
+            if(passes == 70){
                 break;
             }
         }
@@ -171,15 +171,17 @@ public class QuakeSortInPlace {
         //String source = "src/hw3/data/nov20quakedata.atom";
         //String source = "src/hw3/data/earthquakeDataSampleSix2.atom";
         //String source = "src/hw3/data/earthquakeDataSampleSix1.atom";
-        String source = "src/hw3/data/earthQuakeDataDec6sample1.atom";
-        //String source = "src/hw3/data/earthQuakeDataDec6sample2.atom";
+        //String source = "src/hw3/data/earthQuakeDataDec6sample1.atom";
+        //String source = "src/main/java/hw3/data/earthQuakeDataDec6sample2.atom";
+        //String source = "src/main/java/hw3/data/earthQuakeDataWeekDec6sample2.atom";
+        String source = "src/main/java/hw3/data/earthQuakeDataWeekDec6sample1.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);  
        
         System.out.println("read data for "+list.size()+" quakes");    
         //sortByMagnitude(list);
-        sortByLargestDepth(list);
+        //sortByLargestDepth(list);
         //sortByMagnitudeWithBubbleSort(list);
-        //sortByMagnitudeWithBubbleSortWithCheck(list);
+        sortByMagnitudeWithBubbleSortWithCheck(list);
         //sortByMagnitudeWithCheck(list);
         for (QuakeEntry qe: list) {
             System.out.println(qe);

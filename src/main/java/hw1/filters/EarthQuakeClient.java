@@ -136,15 +136,19 @@ public class EarthQuakeClient {
 
     public void quakesOfDepth(){
         EarthQuakeParser parser = new EarthQuakeParser();
-        String source = "src/hw1/data/nov20quakedata.atom";
+        //String source = "src/hw1/data/nov20quakedata.atom";
+        String source = "src/main/java/hw1/data/nov20quakedata.atom";
         //String source = "src/hw1/data/nov20quakedatasmall.atom";
         ArrayList<QuakeEntry> list = parser.read(source);
 
         System.out.println("read data for " + list.size() + " quakes");
-        System.out.println("Find quakes with depth between -10000.0 and -5000.0");
+        //System.out.println("Find quakes with depth between -10000.0 and -5000.0");
+        //System.out.println("Find quakes with depth between -12000.0 and -10000.0");
+        System.out.println("Find quakes with depth between -4000.0 and -2000.0");
 
         //list = filterByDepth(list, -10000.0, -5000.0);
-        list = filterByDepth(list, -8000.0, -5000.0);
+        //list = filterByDepth(list, -12000.0, -10000.0);
+        list = filterByDepth(list, -4000.0, -2000.0);
 
         list.stream().forEach(qe -> System.out.println(qe));
 
@@ -154,14 +158,18 @@ public class EarthQuakeClient {
     public void quakesByPhrase(){
         EarthQuakeParser parser = new EarthQuakeParser();
         //String source = "src/hw1/data/nov20quakedatasmall.atom";
-        String source = "src/hw1/data/nov20quakedata.atom";
+        //String source = "src/hw1/data/nov20quakedata.atom";
+        String source = "src/main/java/hw1/data/nov20quakedata.atom";
+
         ArrayList<QuakeEntry> list = parser.read(source);
 
         System.out.println("read data for " + list.size() + " quakes");
 
         //list = filterByPhrase(list, "end", "California");
-        //list = filterByPhrase(list, "any", "Can");
-        list = filterByPhrase(list, "start", "Explosion");
+        //list = filterByPhrase(list, "end", "Alaska");
+        list = filterByPhrase(list, "any", "Can");
+        //list = filterByPhrase(list, "start", "Explosion");
+        //list = filterByPhrase(list, "start", "Quarry Blast");
         //list = filterByPhrase(list, "any", "Creek");
 
         list.stream().forEach(qe -> System.out.println(qe));

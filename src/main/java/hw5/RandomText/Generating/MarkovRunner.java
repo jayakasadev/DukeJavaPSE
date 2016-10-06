@@ -19,7 +19,8 @@ public class MarkovRunner {
 		st = st.replace('\n', ' ');
 		MarkovZero markov = new MarkovZero();
         //markov.setRandom(101);
-		markov.setTraining(st);
+        markov.setRandom(1024);
+        markov.setTraining(st);
 		for(int k=0; k < 3; k++){
 			String text = markov.getRandomText(500);
 			printOut(text);
@@ -32,7 +33,8 @@ public class MarkovRunner {
         st = st.replace('\n', ' ');
         MarkovOne markov = new MarkovOne();
         //markov.setRandom(101);
-		markov.setRandom(42);
+		//markov.setRandom(42);
+        markov.setRandom(365);
         markov.setTraining(st);
         for(int k=0; k < 3; k++){
             String text = markov.getRandomText(500);
@@ -46,7 +48,8 @@ public class MarkovRunner {
         st = st.replace('\n', ' ');
         MarkovFour markov = new MarkovFour();
         //markov.setRandom(101);
-        markov.setRandom(25);
+        markov.setRandom(715);
+        //markov.setRandom(25);
         markov.setTraining(st);
         for(int k=0; k < 3; k++){
             String text = markov.getRandomText(500);
@@ -58,9 +61,11 @@ public class MarkovRunner {
         FileResource fr = new FileResource();
         String st = fr.asString();
         st = st.replace('\n', ' ');
-        MarkovModel markov = new MarkovModel(6);
+        //MarkovModel markov = new MarkovModel(6);
+        MarkovModel markov = new MarkovModel(7);
         //markov.setRandom(101);
-        markov.setRandom(38);
+        //markov.setRandom(38);
+        markov.setRandom(953);
         markov.setTraining(st);
         for(int k=0; k < 3; k++){
             String text = markov.getRandomText(500);

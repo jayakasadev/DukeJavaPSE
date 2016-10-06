@@ -24,7 +24,7 @@ public class EfficientMarkovWord implements  IMarkovModel{
         myText = text.split("\\s+");
         //System.out.println("Building the Map");
         buildMap();
-        //printHashMapInfo();
+        printHashMapInfo();
     }
 
     @Override

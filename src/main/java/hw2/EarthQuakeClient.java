@@ -119,13 +119,29 @@ public class EarthQuakeClient {
         filter.addFilter(new PhraseFilter("any", "a"));
         */
 
-        filter.addFilter(new MagnitudeFilter(0.0, 3.0));
-        filter.addFilter(new DistanceFilter(new Location(36.1314, -95.9372), 10000));
-        filter.addFilter(new PhraseFilter("any", "Ca"));
+        //filter.addFilter(new MagnitudeFilter(0.0, 3.0));
+        //filter.addFilter(new DistanceFilter(new Location(36.1314, -95.9372), 10000));
+        //filter.addFilter(new PhraseFilter("any", "Ca"));
+
+        //filter.addFilter(new DistanceFilter(new Location(39.7392, -104.9903), 1000));
+        //filter.addFilter(new PhraseFilter("end", "a"));
+
+        //filter.addFilter(new MagnitudeFilter(3.5, 4.5));
+        //filter.addFilter(new DepthFilter(-55000.0, -20000.0));
+
+        /*
+        filter.addFilter(new MagnitudeFilter(1.0, 4.0));
+        filter.addFilter(new DepthFilter(-180000.0, -30000.0));
+        filter.addFilter(new PhraseFilter("any", "o"));
+        */
+
+        filter.addFilter(new MagnitudeFilter(0.0, 5.0));
+        filter.addFilter(new DistanceFilter(new Location(55.7308, 9.1153), 3000));
+        filter.addFilter(new PhraseFilter("any", "e"));
 
         EarthQuakeParser parser = new EarthQuakeParser();
         //String source = "src/hw1/data/nov20quakedatasmall.atom";
-        String source = "src/hw1/data/nov20quakedata.atom";
+        String source = "src/main/java/hw1/data/nov20quakedata.atom";
         ArrayList<QuakeEntry> list = parser.read(source);
 
         System.out.println("Found " + list.size() + " quakes\n");

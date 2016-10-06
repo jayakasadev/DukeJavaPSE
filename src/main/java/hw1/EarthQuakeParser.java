@@ -10,6 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import hw1.doa.QuakeEntry;
 import hw1.filters.EarthQuakeClient;
+import hw1.filters.LargestQuakes;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -102,7 +103,7 @@ public class EarthQuakeParser {
     }
 
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException{
-        EarthQuakeParser xp = new EarthQuakeParser();
+        //EarthQuakeParser xp = new EarthQuakeParser();
         /*
         //String source = "data/2.5_week.atom";
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
@@ -116,14 +117,14 @@ public class EarthQuakeParser {
         */
 
 
-        EarthQuakeClient client = new EarthQuakeClient();
+        //EarthQuakeClient client = new EarthQuakeClient();
         //client.closeToMe();
         //System.out.println("\n");
         //client.bigQuakes();
         //System.out.println("\n");
         //client.quakesOfDepth();
         //System.out.println("\n");
-        client.quakesByPhrase();
+        //client.quakesByPhrase();
 
 
         /*
@@ -131,10 +132,10 @@ public class EarthQuakeParser {
         closestQuakes.findClosestQuakes();
         */
 
-        /*
+
         LargestQuakes largestQuakes = new LargestQuakes();
         largestQuakes.findLargestQuakes();
-        */
+
     }
     
 }

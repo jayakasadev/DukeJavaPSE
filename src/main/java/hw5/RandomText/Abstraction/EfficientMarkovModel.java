@@ -19,6 +19,7 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
     public void setTraining(String s){
         myText = s.trim();
         buildMap();
+        printHashMapInfo();
     }
 
     @Override
@@ -61,7 +62,7 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
     public void buildMap(){
         String key = myText.substring(0, order);
         List<String> list;
-        int count = 0;
+        //int count = 0;
 
         for(int a = 0; a < myText.length()-order + 1; a++){
             //System.out.println("key " + key + " a " + a);
